@@ -34,7 +34,10 @@ export function SidebarWidgets() {
         <div className="mt-5 space-y-3">
           {defaultCategories.map((item) => (
             <div key={item.id} className="flex items-center justify-between gap-3">
-              <CategoryPill category={item.id as "idea" | "problem" | "task" | "research"} label={`${item.name}s`} />
+              <CategoryPill
+                category={item.id as "idea" | "problem" | "task" | "research"}
+                label={item.id === "research" ? "Research" : `${item.name}s`}
+              />
               <span className="text-body font-semibold text-text-primary">
                 {activeThoughts.filter((thought) => thought.category === item.id).length}
               </span>

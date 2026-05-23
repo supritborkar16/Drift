@@ -1,11 +1,11 @@
-import { Archive, Bell, Menu, Search, Trash2 } from "lucide-react";
+import { Bell, Menu, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Logo } from "@/components/layout/Logo";
-import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { ProfileDropdown } from "@/components/layout/ProfileDropdown";
 import { cn } from "@/lib/utils";
 import { type NavItem } from "@/types/navigation";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
@@ -84,39 +84,16 @@ export function Navbar() {
               onChange={(event) => setLocalSearch(event.target.value)}
             />
             <kbd className="pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-sm bg-primary/8 px-1.5 py-0.5 text-[10px] font-medium text-text-secondary xl:block">
-              ⌘ K
+              Ctrl K
             </kbd>
           </label>
         </div>
 
         <div className="ml-auto flex items-center gap-2">
-          <NavLink to="/archive" className="hidden md:block" aria-label="Open archive">
-            {({ isActive }) => (
-              <Button variant={isActive ? "secondary" : "icon"} size="icon" aria-label="Open archive">
-                <Archive size={18} aria-hidden="true" />
-              </Button>
-            )}
-          </NavLink>
-          <NavLink to="/bin" className="hidden md:block" aria-label="Open bin">
-            {({ isActive }) => (
-              <Button variant={isActive ? "secondary" : "icon"} size="icon" aria-label="Open bin">
-                <Trash2 size={18} aria-hidden="true" />
-              </Button>
-            )}
-          </NavLink>
-          <ThemeToggle />
           <Button variant="icon" size="icon" aria-label="Notifications">
             <Bell size={18} aria-hidden="true" />
           </Button>
-          <button
-            type="button"
-            className="h-10 w-10 rounded-sm border border-border bg-surface shadow-sm outline-none transition hover:-translate-y-0.5 hover:ring-2 hover:ring-primary/20 focus-visible:ring-2 focus-visible:ring-primary/30"
-            aria-label="Open profile menu"
-          >
-            <span className="flex h-full w-full items-center justify-center rounded-sm bg-primary/12 text-small font-semibold text-primary">
-              A
-            </span>
-          </button>
+          <ProfileDropdown />
         </div>
       </div>
 
